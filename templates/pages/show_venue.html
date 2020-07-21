@@ -74,6 +74,19 @@
 		{% endfor %}
 	</div>
 </section>
-
+<form class="modification-form" data-id="{{ venue.id }}">
+	<button type="submit" class="delete" data-id="{{ venue.id }}">Delete Venue</button>
+</form>
+<script>
+	const deleteButton = document.querySelector('.delete');
+	deleteButton.onclick = (evt) => {
+		evt.preventDefault();
+		venueID = evt.target.dataset.id;
+		// console.log(venueID);
+		fetch(`/venues/${venueID}`, {
+			method: 'DELETE'
+		}).catch(err => console.log(`Error is: ${err}`));
+	}
+</script>
 {% endblock %}
 
