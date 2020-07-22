@@ -160,11 +160,11 @@ def venues():
                 "name": venue.name, 
                 "num_upcoming_shows": len(db.session.query(Show).filter(Show.venue_id==1).filter(Show.start_time > datetime.now()).all())
             })
-            data.append({
-                "city": area.city,
-                "state": area.state,
-                "venues": venueData
-            })
+        data.append({
+            "city": area.city,
+            "state": area.state,
+            "venues": venueData
+        })
     return render_template('pages/venues.html', areas=data)
 
 @app.route('/venues/search', methods=['POST'])
@@ -203,6 +203,8 @@ def show_venue(venue_id):
 
     upcomingShows = []
     pastShows = []
+    upcomingShowsNums = set([])
+    pastShowsNums = set([])
 
     for show in (db.session.query(Show).join(Artist).filter(Show.venue_id == venue_id).filter(Show.start_time > datetime.now()).all()):
         upcomingShows.append({
@@ -211,6 +213,7 @@ def show_venue(venue_id):
             "artist_image_link": show.artist.image_link,
             "start_time": show.start_time.strftime("%Y-%m-%d %H:%M:%S")
         })
+        upcomingShowsNums.add(show.artist_id)
 
     for show in (db.session.query(Show).join(Artist).filter(Show.venue_id == venue_id).filter(Show.start_time < datetime.now()).all()):
         pastShows.append({
@@ -219,6 +222,7 @@ def show_venue(venue_id):
             "artist_image_link": show.artist.image_link,
             "start_time": show.start_time.strftime("%Y-%m-%d %H:%M:%S")
         })
+        pastShowsNums.add(show.artist_id)
 
     data = {
         'id': venue.id,
@@ -233,9 +237,9 @@ def show_venue(venue_id):
         'seeking_talent': venue.seeking_talent,
         'seeking_description': venue.seeking_description,
         "image_link": venue.image_link,
-        'upcoming_shows_count': len(upcomingShows),
+        'upcoming_shows_count': len(upcomingShowsNums),
         'upcoming_shows': upcomingShows,
-        'past_shows_count': len(pastShows), 
+        'past_shows_count': len(pastShowsNums), 
         'past_shows': pastShows
     }
 
@@ -264,7 +268,10 @@ def create_venue_submission():
             phone=venueData.phone.data,
             genres=','.join(genresList),
             facebook_link=venueData.facebook_link.data,
-            image_link=venueData.image_link.data
+            image_link=venueData.image_link.data,
+            website=venueData.website.data,
+            seeking_talent=venueData.seeking_talent.data,
+            seeking_description=venueData.seeking_description.data
         )
         newVenue.add()
         # on successful db insert, flash success
@@ -529,7 +536,10 @@ def create_artist_submission():
             phone=artistData.phone.data,
             genres=','.join(genresList),
             facebook_link=artistData.facebook_link.data,
-            image_link=artistData.image_link.data
+            image_link=artistData.image_link.data,
+            website=artistData.website.data,
+            seeking_venue=artistData.seeking_venue.data,
+            seeking_description=artistData.seeking_description.data
         )
         newArtist.add()
         # on successful db insert, flash success
