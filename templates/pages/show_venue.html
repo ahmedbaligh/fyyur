@@ -75,8 +75,37 @@
 	</div>
 </section>
 <form class="modification-form" data-id="{{ venue.id }}">
+	<button type="submit" class="edit"><a href="/venues/{{ venue.id }}/edit">Edit Venue</a></button>
 	<button type="submit" class="delete" data-id="{{ venue.id }}">Delete Venue</button>
 </form>
+<style>
+	.modification-form {
+		display: flex;
+		justify-content: space-evenly;
+		margin: 60px;
+	}
+	.modification-form button {
+		font-size: 15px;
+		border: 1px solid grey;
+		border-radius: 8px;
+		padding: 5px;
+		color: black;
+	}
+	.modification-form a {
+		color: inherit;
+	}
+	.modification-form a:hover {
+		text-decoration: none;
+	}
+	.modification-form .edit:hover {
+		background-color: limegreen;
+		color: white;
+	}
+	.modification-form .delete:hover {
+		background-color: red;
+		color: white;
+	}
+</style>
 <script>
 	const deleteButton = document.querySelector('.delete');
 	deleteButton.onclick = (evt) => {
