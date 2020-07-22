@@ -212,7 +212,7 @@ def show_venue(venue_id):
             "start_time": show.start_time.strftime("%Y-%m-%d %H:%M:%S")
         })
 
-    for show in (db.session.query(Show).join(Artist).filter(Show.venue_id == venue_id).filter(Show.start_time > datetime.now()).all()):
+    for show in (db.session.query(Show).join(Artist).filter(Show.venue_id == venue_id).filter(Show.start_time < datetime.now()).all()):
         pastShows.append({
             "artist_id": show.artist_id,
             "artist_name": show.artist.name,
@@ -277,7 +277,6 @@ def create_venue_submission():
     finally:
         db.session.close()
         return render_template('pages/home.html')
-
 
 @app.route('/venues/<venue_id>', methods=['DELETE'])
 def delete_venue(venue_id):
@@ -358,20 +357,20 @@ def show_artist(artist_id):
     upcomingShows = []
     pastShows = []
 
-    for show in (db.session.query(Show).join(Venue).filter(Show.artist_id==artist_id).filter(Show.start_time>datetime.now()).all()):
+    for show in (db.session.query(Show).join(Venue).filter(Show.artist_id == artist_id).filter(Show.start_time > datetime.now()).all()):
         upcomingShows.append({
-            'venue_id': shows.artist_id,
-            'venue_name': shows.artists.name,
-            'venue_image_link': shows.artists.image_link,
-            'start_time': shows.start_time
+            'venue_id': show.venue_id,
+            'venue_name': show.venue.name,
+            'venue_image_link': show.venue.image_link,
+            'start_time': show.start_time.strftime("%Y-%m-%d %H:%M:%S")
         })
 
-    for show in (db.session.query(Show).join(Venue).filter(Show.artist_id==artist_id).filter(Show.start_time>datetime.now()).all()):
+    for show in (db.session.query(Show).join(Venue).filter(Show.artist_id == artist_id).filter(Show.start_time < datetime.now()).all()):
         pastShows.append({
-            'venue_id': shows.artist_id,
-            'venue_name': shows.artists.name,
-            'venue_image_link': shows.artists.image_link,
-            'start_time': shows.start_time
+            'venue_id': show.venue_id,
+            'venue_name': show.venue.name,
+            'venue_image_link': show.venue.image_link,
+            'start_time': show.start_time.strftime("%Y-%m-%d %H:%M:%S")
         })
 
     data = {
