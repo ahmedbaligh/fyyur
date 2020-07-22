@@ -1,8 +1,14 @@
 from datetime import datetime
 # Update the imported class name from Form to FlaskForm
 from flask_wtf import FlaskForm
-from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField, BooleanField
-from wtforms.validators import DataRequired, AnyOf, URL
+from wtforms import StringField, SelectField, SelectMultipleField, DateTimeField, BooleanField, TextAreaField
+from wtforms.validators import DataRequired, AnyOf, URL, Regexp, ValidationError
+
+def phoneValidation(form, phone):
+    us_phone_num = '^([0-9]{3})[-][0-9]{3}[-][0-9]{4}$'
+    match = re.search(us_phone_num, phone.data)
+    if not match:
+        raise ValidationError('Error, phone number must be in format xxx-xxx-xxxx')
 
 class ShowForm(FlaskForm):
     artist_id = StringField(
@@ -84,7 +90,7 @@ class VenueForm(FlaskForm):
         'address', validators=[DataRequired()]
     )
     phone = StringField(
-        'phone'
+        'phone', validators=[DataRequired(), Regexp("^[0-9]*$", message="Phone number should only contain digits")]
     )
     image_link = StringField(
         'image_link'
@@ -191,8 +197,8 @@ class ArtistForm(FlaskForm):
         ]
     )
     phone = StringField(
-        # TODO implement validation logic for state
-        'phone'
+        # Done implement validation logic for phone
+        'phone', validators=[phoneValidation]
     )
     image_link = StringField(
         'image_link'
@@ -237,5 +243,8 @@ class ArtistForm(FlaskForm):
     seeking_description = StringField(
         'seeking_description'
     )
+
+
+
 
 # TODO IMPLEMENT NEW ARTIST FORM AND NEW SHOW FORM
