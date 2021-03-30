@@ -6,7 +6,10 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 # Enable debug mode.
 DEBUG = True
 
-# Connect to the database
+# Make sure DATABASE URI is set
+if not os.environ.get("DB_CONN_STR"):
+    raise RuntimeError("DB_CONN_STR is not set")
+
 # IMPLEMENT DATABASE URL
-SQLALCHEMY_DATABASE_URI = 'postgres://ahmedbaligh:eman@localhost:5433/fyyur'
+SQLALCHEMY_DATABASE_URI = os.environ.get("DB_CONN_STR")
 SQLALCHEMY_TRACK_MODIFICATIONS = False
