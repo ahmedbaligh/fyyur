@@ -1,75 +1,96 @@
-
 /**
  * @file
  * Main stylesheet file.
  */
 
-
 /*****************************************************************************
  * Main elements
  ****************************************************************************/
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,700&display=swap');
+
 html {
   overflow-y: scroll;
 }
+
+body {
+  background-image: radial-gradient(circle, #1f3756, #141539);
+  color: #fff;
+  font: 400 15px 'Lato', sans-serif;
+}
+
 section {
   margin: 50px 0;
 }
+
 section > h2 {
   margin-bottom: 20px;
 }
+
 a {
   cursor: pointer;
   color: #ff8c3a;
 }
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
   background: initial;
   color: initial;
 }
+
 p.lead {
   margin-top: 30px;
 }
+
 ::selection {
   background: #555;
-  color: #FFF;
+  color: #fff;
 }
+
 ::-moz-selection {
   background: #555;
-  color: #FFF;
+  color: #fff;
 }
+
 ::-webkit-selection {
   background: #555;
-  color: #FFF;
+  color: #fff;
 }
+
 /* Main elements end */
 
-
 /*****************************************************************************
- * Various other styles
- ****************************************************************************/
+    * Various other styles
+    ****************************************************************************/
 
 /* Various other styles end */
 
 #front-splash {
-	width: 100%;
+  width: 100%;
 }
+
 .navbar.navbar-fixed-top {
-  background: none;
+  background: transparent;
   box-shadow: none;
   border-bottom: none;
   padding-top: 10px;
-  background-color: white;
 }
+
 .navbar-nav .search {
   margin-top: 6px;
   width: 300px;
   margin-right: 15px;
 }
-.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.active>a {
-    background: none;
-    box-shadow: none;
-    color: black;
-    font-weight: bold;
+
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .active > a {
+  background: none;
+  box-shadow: none;
+  color: black;
+  font-weight: bold;
 }
+
 .navbar-nav .search input {
   border-radius: 50px;
   background: #f2f2f2;
@@ -81,10 +102,10 @@ p.lead {
 }
 
 .btn-default {
-    border: none;
-    background-color: #dde2e7;
-    background-image: linear-gradient(#dde2e7,#dde2e7);
-    color: #444;
+  border: none;
+  background-color: #dde2e7;
+  background-image: linear-gradient(#dde2e7, #dde2e7);
+  color: #444;
 }
 
 #content h3 {
@@ -93,7 +114,7 @@ p.lead {
 }
 
 #content h3 button {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 ul.items {
@@ -101,44 +122,55 @@ ul.items {
   padding: 0;
   margin: 0;
 }
+
 ul.items > li > a {
   margin-bottom: 15px;
   display: flex;
   color: initial;
   text-decoration: initial;
 }
+
 ul.items > li > a > i {
   padding: 7px 10px 0;
 }
+
 ul.items > li:hover {
   color: orange;
   cursor: pointer;
 }
+
 ul.items > li:hover h5 {
   color: orange;
 }
+
 .item {
   padding: 5px 5px 5px;
   flex: 1;
 }
+
 .item h5 {
   margin-top: 0;
   margin-bottom: 5px;
 }
+
 img {
   max-width: 100%;
   max-height: 500px;
 }
+
 p {
   margin: 5px 0;
 }
+
 p > i {
   width: 30px;
   text-align: center;
 }
+
 .not-seeking {
   opacity: 0.6;
 }
+
 .seeking {
   display: inline-block;
   padding: 20px 30px;
@@ -151,12 +183,15 @@ p > i {
 .seeking > button {
   margin-left: 15px;
 }
+
 .description {
   max-width: 450px;
 }
+
 .genres {
   margin-bottom: 15px;
 }
+
 span.genre {
   display: inline-block;
   font-family: monospace;
@@ -169,10 +204,12 @@ span.genre {
   text-transform: uppercase;
   border: solid 1px #eee;
 }
+
 .monospace {
   font-family: monospace;
   text-transform: uppercase;
 }
+
 h1.monospace {
   font-size: 2.5rem;
 }
@@ -181,9 +218,11 @@ h2.monospace {
   font-size: 2.25rem;
   opacity: 0.7;
 }
+
 .shows .tile-show {
   height: 350px;
 }
+
 .tile {
   text-align: center;
   padding: 15px 25px;
@@ -191,21 +230,39 @@ h2.monospace {
   height: 325px;
   margin-bottom: 15px;
 }
+
 .tile img {
   max-height: 200px;
 }
-.form-wrapper {
-  max-width: 400px;
+
+.navbar {
+  position: sticky;
+  top: 0;
+  border: none;
+  padding: 15px 0;
+  background: transparent;
+  margin-bottom: 0px;
 }
-.form-inline {
-  font-size: 0;
+
+@media (min-width: 768px) {
+  .navbar .navbar-collapse {
+    display: flex !important;
+    justify-content: flex-end;
+    color: #ddd;
+  }
 }
-.form-inline .form-group {
-  width: 50%;
+
+ul.navbar-nav {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
 }
-.form-inline .form-control {
-  width: 100%;
+
+.navbar ul.navbar-nav a {
+  color: inherit;
+  font: 400 15px 'Lato', sans-serif;
 }
-.subtitle {
-  opacity: 0.5;
+
+.navbar ul.navbar-nav a:hover {
+  color: #ff8c3a;
 }
