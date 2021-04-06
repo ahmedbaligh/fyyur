@@ -17,7 +17,7 @@
 
 .form-wrapper h3 i:hover {
   transition: all 0.3s ease-in;
-  color: #ffc63a;
+  color: #ff8c3a;
 }
 
 .form-group {
@@ -109,8 +109,7 @@ form > .form-group:not(.show-time):last-of-type {
 
 input[type='submit']:hover {
   transition: all 0.4s ease-in;
-  background: #ffc63a;
-  color: #555;
+  background: #ff8c3a;
 }
 
 @media (max-width: 678px) {
