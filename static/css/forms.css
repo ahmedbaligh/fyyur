@@ -1,5 +1,5 @@
 .form-wrapper {
-  font: bold 20px 'Poppins', sans-serif;
+  font: 400 20px 'Lato', sans-serif;
   margin: 30px auto;
   width: 55%;
 }
@@ -15,7 +15,8 @@
   color: white;
 }
 
-.form-wrapper h3 i:hover {
+.form-wrapper h3 i:hover,
+.form-wrapper h3 i:focus {
   transition: all 0.3s ease-in;
   color: #ff8c3a;
 }
@@ -38,8 +39,9 @@ input[type='text'],
 
 input[type='text'],
 .form-group select {
+  transition: all 0.4s ease-out;
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 16px;
   color: #ddd;
   background: transparent;
 }
@@ -107,7 +109,8 @@ form > .form-group:not(.show-time):last-of-type {
   background: green;
 }
 
-input[type='submit']:hover {
+input[type='submit']:hover,
+input[type='submit']:focus {
   transition: all 0.4s ease-in;
   background: #ff8c3a;
 }

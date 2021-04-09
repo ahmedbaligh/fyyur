@@ -26,6 +26,17 @@ h3 a button.btn {
   width: 140px;
 }
 
+@media (max-width: 400px) {
+  .container {
+    margin: 0 10px;
+  }
+
+  h3 a button.btn {
+    font-size: 17px;
+    width: 130px;
+  }
+}
+
 h3 a:first-of-type button.btn {
   background: #ff8c3a;
   color: #fff;
