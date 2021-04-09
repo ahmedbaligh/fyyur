@@ -10,3 +10,14 @@ const deleteVenue = async () => {
 
   if (result.status === 200) window.location.replace('/');
 };
+
+// Mobile hamburger menu
+const openBurger = () => {
+  const opener = document.querySelector('.navbar-toggle .fas');
+  const navbar = document.querySelector('.navbar');
+
+  navbar.classList.toggle('mobile');
+
+  opener.classList.toggle('fa-bars');
+  opener.classList.toggle('fa-times');
+};
